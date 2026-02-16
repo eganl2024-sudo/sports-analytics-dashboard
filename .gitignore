@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+
+# Environment
+.env
+.venv
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+logos_backup*/
+app_backup*.py
+*_backup_*.py
+cleanup_project.py
+CLEANUP_GUIDE.md
+secrets.toml
+.streamlit/secrets.toml
+
+# Large data files (uncomment if data/ folders are large)
+# data/raw/*
+# data/processed/*
+# data/results/*
+
+# Temporary files
+*.log
+*.tmp
+explore_output.txt
