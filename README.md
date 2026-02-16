@@ -27,7 +27,7 @@ This project explores whether a **Context-Aware Machine Learning Model** can out
 
 ## 🚀 Live Demo
 
-[View the live Streamlit app](YOUR_STREAMLIT_URL_HERE)
+[View the live Streamlit app](https://sports-analytics-dashboard.streamlit.app/)
 
 ## 📊 Methodology
 
