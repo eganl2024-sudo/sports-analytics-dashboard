@@ -162,7 +162,7 @@ jupyter notebook
 
 ## 👨‍💻 Author
 
-**Liam Jegard**
+**Liam Egan**
 - Graduate Student, Business Analytics (Sports Analytics) - University of Notre Dame
 - Former D1 Goalkeeper (2x Final Four, National Championship Runner-up 2023)
 - [LinkedIn](YOUR_LINKEDIN)
