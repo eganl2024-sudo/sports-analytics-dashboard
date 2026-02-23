@@ -1,4 +1,4 @@
-# ⚽ European Soccer League Predictions 2025/2026
+#  European Soccer League Predictions 2025/2026
 
 ![Status](https://img.shields.io/badge/Status-Active-success)
 ![Python](https://img.shields.io/badge/Python-3.9+-blue)
@@ -6,18 +6,18 @@
 
 An advanced machine learning system that predicts final standings for the 2025/2026 season across Europe's top 5 soccer leagues, comparing context-aware ensemble models against traditional Elo ratings.
 
-## 🎯 Project Overview
+##  Project Overview
 
 This project explores whether a **Context-Aware Machine Learning Model** can outperform the traditional **Elo Rating System** in predicting soccer league standings. Using 10 years of historical data and advanced feature engineering, we've built an ensemble model that incorporates contextual factors beyond simple win/loss records.
 
 ### Leagues Analyzed
-- 🏴󠁧󠁢󠁥󠁮󠁧󠁿 English Premier League
-- 🇪🇸 Spanish La Liga
-- 🇩🇪 German Bundesliga
-- 🇫🇷 French Ligue 1
-- 🇮🇹 Italian Serie A
+- English Premier League
+- Spanish La Liga
+- German Bundesliga
+- French Ligue 1
+- Italian Serie A
 
-## ✨ Key Features
+## Key Features
 
 - **Context-Aware Predictions**: Incorporates strength of schedule, finishing efficiency, and fatigue
 - **Ensemble Modeling**: Combines Random Forest, XGBoost, and Logistic Regression
@@ -25,11 +25,11 @@ This project explores whether a **Context-Aware Machine Learning Model** can out
 - **Interactive Dashboard**: Built with Streamlit for real-time exploration
 - **Model Calibration**: Verified prediction accuracy through Brier Score analysis
 
-## 🚀 Live Demo
+## Live Demo
 
 [View the live Streamlit app](https://sports-analytics-dashboard.streamlit.app/)
 
-## 📊 Methodology
+## Methodology
 
 ### 1. Data Pipeline
 - **Training Data**: 10 years of match results (2015-2025)
@@ -62,7 +62,7 @@ Beyond basic Elo ratings, we engineered contextual features:
 - **Calibration analysis**: Model predictions align with actual outcomes
 - **90% Confidence Intervals**: Quantified prediction uncertainty
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Sports Analytics Project/
@@ -86,7 +86,7 @@ Sports Analytics Project/
 └── Report_Assets/                      # Visualizations and charts
 ```
 
-## 🛠️ Installation & Usage
+##  Installation & Usage
 
 ### Prerequisites
 - Python 3.9+
@@ -124,7 +124,7 @@ jupyter notebook
 # Open notebooks in order (01 through 09_5)
 ```
 
-## 📈 Key Results
+## Key Results
 
 ### Model Performance
 - **Accuracy**: Ensemble model shows X% improvement over baseline Elo
@@ -137,14 +137,14 @@ jupyter notebook
 - **Title Races**: Quantified championship probabilities
 - **Relegation Battles**: Predicted survival chances
 
-## 🎨 Dashboard Features
+## Dashboard Features
 
 - **Interactive League Selection**: Switch between all 5 leagues
 - **Trajectory Divergence**: Visual comparison of Elo vs. Context-Aware predictions
 - **Team Cards**: Champion, Value Pick, Fade, and Relegation predictions
 - **Detailed Tables**: Full standings with confidence intervals
 
-## 🔬 Technologies Used
+## Technologies Used
 
 - **Python**: Core programming language
 - **Pandas & NumPy**: Data manipulation
@@ -154,34 +154,32 @@ jupyter notebook
 - **Streamlit**: Interactive web app
 - **Pillow**: Image processing
 
-## 📚 References & Data Sources
+## References & Data Sources
 
 - Match data: [ESPN, FotMob, etc.]
-- Elo ratings methodology: [Link to Elo paper]
-- Expected goals (xG): [Link to xG methodology]
 
-## 👨‍💻 Author
+## Author
 
 **Liam Egan**
 - Graduate Student, Business Analytics (Sports Analytics) - University of Notre Dame
 - Former D1 Goalkeeper (2x Final Four, National Championship Runner-up 2023)
-- [LinkedIn](YOUR_LINKEDIN)
-- [GitHub](YOUR_GITHUB)
+- [LinkedIn](https://www.linkedin.com/in/liam-egan-/)
+- [GitHub](https://github.com/eganl2024-sudo)
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - Notre Dame MSBA Program
 - Sports Analytics Community
 - Open source contributors
 
-## 📞 Contact
+## Contact
 
 Questions or feedback? Feel free to [open an issue](YOUR_REPO/issues) or reach out on LinkedIn!
 
 ---
 
-⭐ If you found this project interesting, please consider giving it a star!
+ If you found this project interesting, please consider giving it a star!
