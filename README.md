@@ -1,75 +1,75 @@
-#  European Soccer League Predictions 2025/2026
+# european soccer league predictions 2025/2026
 
-![Status](https://img.shields.io/badge/Status-Active-success)
-![Python](https://img.shields.io/badge/Python-3.9+-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.29+-red)
+![status](https://img.shields.io/badge/Status-Active-success)
+![python](https://img.shields.io/badge/Python-3.9+-blue)
+![streamlit](https://img.shields.io/badge/Streamlit-1.29+-red)
 
-An advanced machine learning system that predicts final standings for the 2025/2026 season across Europe's top 5 soccer leagues, comparing context-aware ensemble models against traditional Elo ratings.
+an advanced machine learning system that predicts final standings for the 2025/2026 season across europe's top 5 soccer leagues, comparing context-aware ensemble models against traditional elo ratings.
 
-##  Project Overview
+## project overview
 
-This project explores whether a **Context-Aware Machine Learning Model** can outperform the traditional **Elo Rating System** in predicting soccer league standings. Using 10 years of historical data and advanced feature engineering, we've built an ensemble model that incorporates contextual factors beyond simple win/loss records.
+this project explores whether a **context-aware machine learning model** can outperform the traditional **elo rating system** in predicting soccer league standings. using 10 years of historical data and advanced feature engineering, we've built an ensemble model that incorporates contextual factors beyond simple win/loss records.
 
-### Leagues Analyzed
-- English Premier League
-- Spanish La Liga
-- German Bundesliga
-- French Ligue 1
-- Italian Serie A
+### leagues analyzed
+- english premier league
+- spanish la liga
+- german bundesliga
+- french ligue 1
+- italian serie a
 
-## Key Features
+## key features
 
-- **Context-Aware Predictions**: Incorporates strength of schedule, finishing efficiency, and fatigue
-- **Ensemble Modeling**: Combines Random Forest, XGBoost, and Logistic Regression
-- **Monte Carlo Simulation**: 10,000 simulations for confidence intervals
-- **Interactive Dashboard**: Built with Streamlit for real-time exploration
-- **Model Calibration**: Verified prediction accuracy through Brier Score analysis
+- **context-aware predictions**: incorporates strength of schedule, finishing efficiency, and fatigue
+- **ensemble modeling**: combines random forest, xgboost, and logistic regression
+- **monte carlo simulation**: 10,000 simulations for confidence intervals
+- **interactive dashboard**: built with streamlit for real-time exploration
+- **model calibration**: verified prediction accuracy through brier score analysis
 
-## Live Demo
+## live demo
 
-[View the live Streamlit app](https://sports-analytics-dashboard.streamlit.app/)
+[view the live streamlit app](https://sports-analytics-dashboard.streamlit.app/)
 
-## Methodology
+## methodology
 
-### 1. Data Pipeline
-- **Training Data**: 10 years of match results (2015-2025)
-- **Current Season**: All matches through February 12, 2026
-- **Test Set**: Remaining fixtures for the season
+### 1. data pipeline
+- **training data**: 10 years of match results (2015-2025)
+- **current season**: all matches through february 12, 2026
+- **test set**: remaining fixtures for the season
 
-### 2. Feature Engineering
+### 2. feature engineering
 
-Beyond basic Elo ratings, we engineered contextual features:
+beyond basic elo ratings, we engineered contextual features:
 
-| Feature | Description |
+| feature | description |
 |---------|-------------|
-| **Strength of Schedule** | Rolling average of opponent Elo ratings |
-| **Finishing Efficiency** | Goals scored vs. expected goals (xG) |
-| **Fatigue** | Days of rest between matches |
-| **Form** | Recent performance trends |
+| **strength of schedule** | rolling average of opponent elo ratings |
+| **finishing efficiency** | goals scored vs. expected goals (xg) |
+| **fatigue** | days of rest between matches |
+| **form** | recent performance trends |
 
-### 3. Model Architecture
+### 3. model architecture
 
-**Ensemble Approach:**
-- **Random Forest**: Captures non-linear patterns and feature interactions
-- **XGBoost**: Reduces bias and handles edge cases
-- **Logistic Regression**: Provides stable linear baseline
+**ensemble approach:**
+- **random forest**: captures non-linear patterns and feature interactions
+- **xgboost**: reduces bias and handles edge cases
+- **logistic regression**: provides stable linear baseline
 
-**Stacking:** Meta-model combines predictions for optimal accuracy
+**stacking:** meta-model combines predictions for optimal accuracy
 
-### 4. Validation & Calibration
+### 4. validation & calibration
 
-- **10,000 Monte Carlo simulations** for remaining matches
-- **Calibration analysis**: Model predictions align with actual outcomes
-- **90% Confidence Intervals**: Quantified prediction uncertainty
+- **10,000 monte carlo simulations** for remaining matches
+- **calibration analysis**: model predictions align with actual outcomes
+- **90% confidence intervals**: quantified prediction uncertainty
 
-## Project Structure
+## project structure
 
 ```
-Sports Analytics Project/
-├── app.py                              # Streamlit dashboard
-├── Final_App_Data.csv                  # Prediction results
-├── logos/                              # Team logos
-├── requirements.txt                    # Python dependencies
+sports analytics project/
+├── app.py                              # streamlit dashboard
+├── Final_App_Data.csv                  # prediction results
+├── logos/                              # team logos
+├── requirements.txt                    # python dependencies
 │
 ├── Notebooks/
 │   ├── 01_Data_Extraction_Pipeline.ipynb
@@ -83,103 +83,105 @@ Sports Analytics Project/
 │   ├── 09_Ensemble_Modeling.ipynb
 │   └── 09_5_Context_and_Calibration.ipynb
 │
-└── Report_Assets/                      # Visualizations and charts
+└── Report_Assets/                      # visualizations and charts
 ```
 
-##  Installation & Usage
+## installation & usage
 
-### Prerequisites
-- Python 3.9+
+### prerequisites
+- python 3.9+
 - pip
 
-### Local Setup
+### local setup
 
-1. **Clone the repository**
+1. **clone the repository**
    ```bash
-   git clone https://github.com/YOUR_USERNAME/sports-analytics-project.git
+   git clone https://github.com/eganl2024-sudo/sports-analytics-dashboard.git
    cd sports-analytics-project
    ```
 
-2. **Install dependencies**
+2. **install dependencies**
    ```bash
    pip install -r requirements.txt
    ```
 
-3. **Run the Streamlit app**
+3. **run the streamlit app**
    ```bash
    streamlit run app.py
    ```
 
-4. **Open in browser**
-   Navigate to `http://localhost:8501`
+4. **open in browser**
+   navigate to `http://localhost:8501`
 
-### Exploring the Notebooks
+### exploring the notebooks
 
-The Jupyter notebooks document the complete modeling pipeline:
+the jupyter notebooks document the complete modeling pipeline:
 
 ```bash
-# Start Jupyter
+# start jupyter
 jupyter notebook
 
-# Open notebooks in order (01 through 09_5)
+# open notebooks in order (01 through 09_5)
 ```
 
-## Key Results
+## key results
 
-### Model Performance
-- **Accuracy**: Ensemble model shows X% improvement over baseline Elo
-- **Calibration**: Predicted probabilities align with actual outcomes
-- **Uncertainty Quantification**: 90% confidence intervals provided
+### model performance
+- **accuracy**: ensemble model shows x% improvement over baseline elo
+- **calibration**: predicted probabilities align with actual outcomes
+- **uncertainty quantification**: 90% confidence intervals provided
 
-### Interesting Findings
-- **Value Picks**: Teams outperforming their Elo expectations
-- **Fade Picks**: Teams underperforming compared to Elo baseline
-- **Title Races**: Quantified championship probabilities
-- **Relegation Battles**: Predicted survival chances
+### interesting findings
+- **value picks**: teams outperforming their elo expectations
+- **fade picks**: teams underperforming compared to elo baseline
+- **title races**: quantified championship probabilities
+- **relegation battles**: predicted survival chances
 
-## Dashboard Features
+## dashboard features
 
-- **Interactive League Selection**: Switch between all 5 leagues
-- **Trajectory Divergence**: Visual comparison of Elo vs. Context-Aware predictions
-- **Team Cards**: Champion, Value Pick, Fade, and Relegation predictions
-- **Detailed Tables**: Full standings with confidence intervals
+- **interactive league selection**: switch between all 5 leagues
+- **trajectory divergence**: visual comparison of elo vs. context-aware predictions
+- **team cards**: champion, value pick, fade, and relegation predictions
+- **detailed tables**: full standings with confidence intervals
 
-## Technologies Used
+## technologies used
 
-- **Python**: Core programming language
-- **Pandas & NumPy**: Data manipulation
-- **Scikit-learn**: Machine learning models
-- **XGBoost**: Gradient boosting
-- **Matplotlib**: Visualizations
-- **Streamlit**: Interactive web app
-- **Pillow**: Image processing
+- **python**: core programming language
+- **pandas & numpy**: data manipulation
+- **scikit-learn**: machine learning models
+- **xgboost**: gradient boosting
+- **matplotlib**: visualizations
+- **streamlit**: interactive web app
+- **pillow**: image processing
 
-## References & Data Sources
+## references & data sources
 
-- Match data: [ESPN, FotMob, etc.]
+- match data: [espn, fotmob, etc.]
+- elo ratings methodology: [link to elo paper]
+- expected goals (xg): [link to xg methodology]
 
-## Author
+## author
 
-**Liam Egan**
-- Graduate Student, Business Analytics (Sports Analytics) - University of Notre Dame
-- Former D1 Goalkeeper (2x Final Four, National Championship Runner-up 2023)
-- [LinkedIn](https://www.linkedin.com/in/liam-egan-/)
-- [GitHub](https://github.com/eganl2024-sudo)
+**liam egan**
+- graduate student, business analytics (sports analytics) - university of notre dame
+- former d1 goalkeeper (2x final four, national championship runner-up 2023)
+- [linkedin](https://www.linkedin.com/in/liam-egan-/)
+- [github](https://github.com/eganl2024-sudo)
 
-## License
+## license
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+this project is licensed under the mit license - see the license file for details.
 
-## Acknowledgments
+## acknowledgments
 
-- Notre Dame MSBA Program
-- Sports Analytics Community
-- Open source contributors
+- notre dame msba program
+- sports analytics community
+- open source contributors
 
-## Contact
+## contact
 
-Questions or feedback? Feel free to [open an issue](YOUR_REPO/issues) or reach out on LinkedIn!
+questions or feedback? feel free to [open an issue](https://github.com/eganl2024-sudo/sports-analytics-dashboard/issues) or reach out on linkedin!
 
 ---
 
- If you found this project interesting, please consider giving it a star!
+if you found this project interesting, please consider giving it a star!

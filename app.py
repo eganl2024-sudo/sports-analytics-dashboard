@@ -9,7 +9,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 # ==========================================
 # 1. CONFIG & STYLING
 # ==========================================
-st.set_page_config(page_title="League Predictions ⚽", layout="wide", page_icon="⚽")
+st.set_page_config(page_title="league predictions", layout="wide")
 
 st.markdown("""
 <style>
@@ -42,7 +42,7 @@ st.markdown("""
 # ==========================================
 # 2. LOCAL DATA & ASSET LOADING
 # ==========================================
-LEAGUE_MAP = {
+league_map = {
     'ENG-Premier League': '(ENG) Premier League',
     'ESP-La Liga': '(ESP) La Liga',
     'GER-Bundesliga': '(GER) Bundesliga',
@@ -57,7 +57,7 @@ def load_data():
     except FileNotFoundError:
         return pd.DataFrame() 
 
-    df['league'] = df['league'].map(LEAGUE_MAP).fillna(df['league'])
+    df['league'] = df['league'].map(league_map).fillna(df['league'])
     
     # Force 1-based Integer Ranks
     df['rank_super'] = df.groupby('league')['ensemble_projected'].rank(ascending=False, method='min').astype(int)
@@ -67,7 +67,7 @@ def load_data():
 df = load_data()
 
 if df.empty:
-    st.error("⚠️ Data file 'Final_App_Data.csv' not found. Please run the deployment script.")
+    st.error("data file 'Final_App_Data.csv' not found. please run the deployment script.")
     st.stop()
 
 # ==========================================
@@ -143,7 +143,7 @@ def get_relegation_text(league, subset_df):
     if "(GER)" in league or "(FRA)" in league:
         auto = bottom_table.iloc[0:2]['team'].tolist() 
         playoff = bottom_table.iloc[2]['team']
-        return f"{', '.join(auto)} (Auto)<br><span style='color:#f39c12'>{playoff} (Playoff)</span>"
+        return f"{', '.join(auto)} (auto)<br><span style='color:#f39c12'>{playoff} (playoff)</span>"
     else:
         auto = bottom_table.iloc[0:3]['team'].tolist()
         return f"{', '.join(auto)}"
@@ -196,25 +196,25 @@ def plot_super_slope(league_df):
     ax.axis('off')
     
     # Headers
-    ax.text(0, 0, "Feb 12, 2026 Standings", ha='center', fontsize=14, fontweight='bold', color='#888')
-    ax.text(1, 0, "Final Projected Standings", ha='center', fontsize=14, fontweight='bold', color='#000')
+    ax.text(0, 0, "feb 12, 2026 standings", ha='center', fontsize=14, fontweight='bold', color='#888')
+    ax.text(1, 0, "final projected standings", ha='center', fontsize=14, fontweight='bold', color='#000')
     
     return fig
 
 # ==========================================
 # 3. UI LAYOUT
 # ==========================================
-tab1, tab2 = st.tabs(["🏆 League Predictions", "📘 Project Documentation"])
+tab1, tab2 = st.tabs(["league predictions", "project documentation"])
 
 with tab1:
     with st.sidebar:
-        st.header("⚙️ League Selector")
+        st.header("league selector")
         custom_order = ['(ENG) Premier League', '(ESP) La Liga', '(GER) Bundesliga', '(FRA) Ligue 1', '(ITA) Serie A']
         available = [L for L in custom_order if L in df['league'].unique()]
-        league = st.selectbox("Choose Competition", available)
+        league = st.selectbox("choose competition", available)
         
         st.markdown("---")
-        st.info("**Context:** Comparing Elo Baseline vs. Context-Aware Ensemble.")
+        st.info("**context:** comparing elo baseline vs. context-aware ensemble.")
 
     subset = df[df['league'] == league].copy()
     winner = subset.loc[subset['rank_super'].idxmin()]
@@ -222,72 +222,72 @@ with tab1:
     fade_pick = subset.loc[subset['diff_vs_elo'].idxmin()]
     relegation_text = get_relegation_text(league, subset)
 
-    st.title(f"{league} Projections")
+    st.title(f"{league} projections")
 
     c1, c2, c3, c4 = st.columns(4)
-    with c1: st.markdown(f"<div class='metric-box'><div class='metric-label'>🏆 Champion</div><div class='metric-value'>{winner['team']}</div><div class='metric-sub'>{winner['ensemble_projected']:.1f} Pts</div></div>", unsafe_allow_html=True)
-    with c2: st.markdown(f"<div class='metric-box'><div class='metric-label'>✅ Value Pick</div><div class='metric-value'>{value_pick['team']}</div><div class='metric-sub' style='color:#4bbf73'>+{value_pick['diff_vs_elo']:.1f} vs Elo</div></div>", unsafe_allow_html=True)
-    with c3: st.markdown(f"<div class='metric-box-red'><div class='metric-label'>⚠️ Fade</div><div class='metric-value'>{fade_pick['team']}</div><div class='metric-sub' style='color:#ff4b4b'>{fade_pick['diff_vs_elo']:.1f} vs Elo</div></div>", unsafe_allow_html=True)
-    with c4: st.markdown(f"<div class='metric-box-red'><div class='metric-label'>📉 Relegation</div><div class='metric-value' style='font-size:16px; line-height:1.4'>{relegation_text}</div></div>", unsafe_allow_html=True)
+    with c1: st.markdown(f"<div class='metric-box'><div class='metric-label'>champion</div><div class='metric-value'>{winner['team']}</div><div class='metric-sub'>{winner['ensemble_projected']:.1f} pts</div></div>", unsafe_allow_html=True)
+    with c2: st.markdown(f"<div class='metric-box'><div class='metric-label'>value pick</div><div class='metric-value'>{value_pick['team']}</div><div class='metric-sub' style='color:#4bbf73'>+{value_pick['diff_vs_elo']:.1f} vs elo</div></div>", unsafe_allow_html=True)
+    with c3: st.markdown(f"<div class='metric-box-red'><div class='metric-label'>fade</div><div class='metric-value'>{fade_pick['team']}</div><div class='metric-sub' style='color:#ff4b4b'>{fade_pick['diff_vs_elo']:.1f} vs elo</div></div>", unsafe_allow_html=True)
+    with c4: st.markdown(f"<div class='metric-box-red'><div class='metric-label'>relegation</div><div class='metric-value' style='font-size:16px; line-height:1.4'>{relegation_text}</div></div>", unsafe_allow_html=True)
 
     st.write("")
     col_chart, col_data = st.columns([2, 1])
 
     with col_chart:
-        st.subheader("Trajectory Divergence")
+        st.subheader("trajectory divergence")
         st.pyplot(plot_super_slope(subset))
 
     with col_data:
-        st.subheader("Detailed Projections")
+        st.subheader("detailed projections")
         disp_df = subset[['team', 'ensemble_projected', 'projected_pts', 'diff_vs_elo']].copy()
         disp_df = disp_df.sort_values('ensemble_projected', ascending=False)
-        disp_df.columns = ['Team', 'Model Pts', 'Elo Pts', 'Diff']
+        disp_df.columns = ['team', 'model pts', 'elo pts', 'diff']
         
         # Clean Index (Start at 1)
         disp_df = disp_df.reset_index(drop=True)
         disp_df.index = disp_df.index + 1
 
         st.dataframe(
-            disp_df.style.format({'Model Pts': '{:.1f}', 'Elo Pts': '{:.1f}', 'Diff': '{:+.1f}'})
-            .background_gradient(subset=['Diff'], cmap='RdYlGn', vmin=-5, vmax=5), 
+            disp_df.style.format({'model pts': '{:.1f}', 'elo pts': '{:.1f}', 'diff': '{:+.1f}'})
+            .background_gradient(subset=['diff'], cmap='RdYlGn', vmin=-5, vmax=5), 
             height=800
         )
 
 with tab2:
     st.markdown("""
-    # 📘 Project Documentation
+    # project documentation
     
-    ### **Objective**
-    The goal of this project was to determine if a **Context-Aware Machine Learning Model** could outperform the traditional **Elo Rating System** in predicting the final standings of the 2025/2026 European Soccer Season.
-    
-    ---
-    
-    ### **1. The Data Pipeline**
-    We engineered a robust pipeline to prevent data leakage and ensure historical accuracy.
-    * **History (Train):** 10 years of match data (2015–2025).
-    * **Banked (Current):** All matches played up to Feb 12, 2026.
-    * **Future (Test):** The remaining fixtures for the season.
-    
-    ### **2. The "Skeptic" Architecture**
-    Unlike Elo, which relies solely on past results, our model incorporates **Contextual Features**:
-    1.  **Strength of Schedule:** Did the team beat a giant or a minnow? (Rolling Opponent Elo).
-    2.  **Finishing Efficiency:** Is the team "lucky" (scoring more than xG) or "clinical"?
-    3.  **Fatigue:** Days of rest between matches.
-    
-    ### **3. The Ensemble Engine**
-    We used a "Stacking" approach to combine three algorithms:
-    * **Random Forest:** Captures non-linear patterns and interactions.
-    * **XGBoost:** Reduces bias and handles edge cases.
-    * **Logistic Regression:** Provides a stable linear baseline.
-    
-    ### **4. Validation & Calibration**
-    * **Simulation:** We ran **10,000 Monte Carlo simulations** for the remaining games.
-    * **Calibration:** We verified that when our model predicts a 70% win probability, the team actually wins ~70% of the time (Brier Score analysis).
+    ### **objective**
+    the goal of this project was to determine if a **context-aware machine learning model** could outperform the traditional **elo rating system** in predicting the final standings of the 2025/2026 european soccer season.
     
     ---
     
-    ### **How to Read the Charts**
-    * **Green Line:** The Model predicts this team will finish **higher** than their current Elo ranking implies. (Undervalued).
-    * **Red Line:** The Model predicts this team will finish **lower** than their current Elo ranking implies. (Overvalued).
-    * **[Low-High]:** The 90% Confidence Interval. We are 90% sure the team's final points will fall in this range.
+    ### **1. the data pipeline**
+    we engineered a robust pipeline to prevent data leakage and ensure historical accuracy.
+    * **history (train):** 10 years of match data (2015–2025).
+    * **banked (current):** all matches played up to feb 12, 2026.
+    * **future (test):** the remaining fixtures for the season.
+    
+    ### **2. the "skeptic" architecture**
+    unlike elo, which relies solely on past results, our model incorporates **contextual features**:
+    1.  **strength of schedule:** did the team beat a giant or a minnow? (rolling opponent elo).
+    2.  **finishing efficiency:** is the team "lucky" (scoring more than xg) or "clinical"?
+    3.  **fatigue:** days of rest between matches.
+    
+    ### **3. the ensemble engine**
+    we used a "stacking" approach to combine three algorithms:
+    * **random forest:** captures non-linear patterns and interactions.
+    * **xgboost:** reduces bias and handles edge cases.
+    * **logistic regression:** provides a stable linear baseline.
+    
+    ### **4. validation & calibration**
+    * **simulation:** we ran **10,000 monte carlo simulations** for the remaining games.
+    * **calibration:** we verified that when our model predicts a 70% win probability, the team actually wins ~70% of the time (brier score analysis).
+    
+    ---
+    
+    ### **how to read the charts**
+    * **green line:** the model predicts this team will finish **higher** than their current elo ranking implies. (undervalued).
+    * **red line:** the model predicts this team will finish **lower** than their current elo ranking implies. (overvalued).
+    * **[low-high]:** the 90% confidence interval. we are 90% sure the team's final points will fall in this range.
     """)
