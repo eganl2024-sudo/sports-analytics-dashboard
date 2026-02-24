@@ -9,7 +9,7 @@ from matplotlib.offsetbox import OffsetImage, AnnotationBbox
 # ==========================================
 # 1. CONFIG & STYLING
 # ==========================================
-st.set_page_config(page_title="league predictions", layout="wide")
+st.set_page_config(page_title="League Predictions", layout="wide")
 
 st.markdown("""
 <style>
@@ -204,11 +204,11 @@ def plot_super_slope(league_df):
 # ==========================================
 # 3. UI LAYOUT
 # ==========================================
-tab1, tab2 = st.tabs(["league predictions", "project documentation"])
+tab1, tab2 = st.tabs(["League Predictions", "Project Documentation"])
 
 with tab1:
     with st.sidebar:
-        st.header("league selector")
+        st.header("League Selector")
         custom_order = ['(ENG) Premier League', '(ESP) La Liga', '(GER) Bundesliga', '(FRA) Ligue 1', '(ITA) Serie A']
         available = [L for L in custom_order if L in df['league'].unique()]
         league = st.selectbox("choose competition", available)
@@ -222,7 +222,7 @@ with tab1:
     fade_pick = subset.loc[subset['diff_vs_elo'].idxmin()]
     relegation_text = get_relegation_text(league, subset)
 
-    st.title(f"{league} projections")
+    st.title(f"{league} Projections")
 
     c1, c2, c3, c4 = st.columns(4)
     with c1: st.markdown(f"<div class='metric-box'><div class='metric-label'>champion</div><div class='metric-value'>{winner['team']}</div><div class='metric-sub'>{winner['ensemble_projected']:.1f} pts</div></div>", unsafe_allow_html=True)
@@ -234,28 +234,28 @@ with tab1:
     col_chart, col_data = st.columns([2, 1])
 
     with col_chart:
-        st.subheader("trajectory divergence")
+        st.subheader("Trajectory Divergence")
         st.pyplot(plot_super_slope(subset))
 
     with col_data:
-        st.subheader("detailed projections")
+        st.subheader("Detailed Projections")
         disp_df = subset[['team', 'ensemble_projected', 'projected_pts', 'diff_vs_elo']].copy()
         disp_df = disp_df.sort_values('ensemble_projected', ascending=False)
-        disp_df.columns = ['team', 'model pts', 'elo pts', 'diff']
+        disp_df.columns = ['Team', 'Model Pts', 'Elo Pts', 'Diff']
         
         # Clean Index (Start at 1)
         disp_df = disp_df.reset_index(drop=True)
         disp_df.index = disp_df.index + 1
 
         st.dataframe(
-            disp_df.style.format({'model pts': '{:.1f}', 'elo pts': '{:.1f}', 'diff': '{:+.1f}'})
-            .background_gradient(subset=['diff'], cmap='RdYlGn', vmin=-5, vmax=5), 
+            disp_df.style.format({'Model Pts': '{:.1f}', 'Elo Pts': '{:.1f}', 'Diff': '{:+.1f}'})
+            .background_gradient(subset=['Diff'], cmap='RdYlGn', vmin=-5, vmax=5), 
             height=800
         )
 
 with tab2:
     st.markdown("""
-    # project documentation
+    # Project Documentation
     
     ### **objective**
     the goal of this project was to determine if a **context-aware machine learning model** could outperform the traditional **elo rating system** in predicting the final standings of the 2025/2026 european soccer season.
